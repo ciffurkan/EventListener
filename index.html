@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Es JS</title>
+    <style>
+        #divHover {
+            background-color: black;
+            display: inline;
+            padding: 15px;
+        }
+
+        #divHover span {
+            color: white;
+        }
+
+        .hoverDiv {
+            background-color: yellow !important;
+        }
+
+        .hoverSpan {
+            color: green !important;
+        }
+
+        .blu {
+            background-color: blue;
+        }
+
+        .focus{
+            border: 5px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Esercizi sugli eventi</h1>
+    <button id="doppioclick">clicca o fai doppio click</button>
+    <div id="divHover">
+        <span id="spanHover">Passa Sopra col mouse</span>
+    </div>
+    <input type="text" id="colore">
+    <select id="h1color">
+        <option value="nero">Nero</option>
+        <option value="blu">Blu</option>
+        <option value="rosso">Rosso</option>
+        <option value="giallo">Giallo</option>
+        <option value="verde">Verde</option>
+    </select>
+    <input type="text" required id="obbligatorio">
+    <p id="allert"></p>
+
+    <script>
+        document.getElementById("doppioclick").addEventListener("dblclick", DoppioClick)
+        document.getElementById("divHover").addEventListener("mouseover", Hover)
+        document.getElementById("divHover").addEventListener("mouseout", RemoveHover)
+        document.getElementById("colore").addEventListener("keyup", CambiaColore)
+        document.getElementById("h1color").addEventListener("change", CambiaH1)
+        document.getElementById("obbligatorio").addEventListener("input", ValoreObbligatorio)
+        document.getElementById("obbligatorio").addEventListener("focus", Focus)
+
+        function DoppioClick() {
+            alert("Doppio Click")
+        }
+
+        function Hover() {
+            document.getElementById("divHover").classList.add("hoverDiv");
+            document.getElementById("spanHover").classList.add("hoverSpan");
+        }
+
+        function RemoveHover() {
+            document.getElementById("divHover").classList.remove("hoverDiv");
+            document.getElementById("spanHover").classList.remove("hoverSpan");
+        }
+
+        function CambiaColore() {
+            let parola = document.getElementById("colore").value;
+            let x = document.getElementsByTagName("body");
+            if (parola == "blu") {
+                x.item(0).classList.add("blu");
+            } else {
+                x.item(0).classList.remove("blu");
+            }
+        }
+
+        function CambiaH1() {
+            let parola = document.getElementById("h1color").value;
+            let x = document.getElementsByTagName("h1");
+            if (parola == "nero") {
+                x.item(0).style.color = "black";
+            } else if (parola == "blu") {
+                x.item(0).style.color = "blue";
+            } else if (parola == "rosso") {
+                x.item(0).style.color = "red";
+            } else if (parola == "giallo") {
+                x.item(0).style.color = "yellow";
+            } else if (parola == "verde") {
+                x.item(0).style.color = "green";
+            }
+        }
+
+        function ValoreObbligatorio() {
+            let x = document.getElementById("obbligatorio").value;
+            if (x == "") {
+                document.getElementById("allert").innerHTML = "Campo Obbligatorio";
+                document.getElementById("allert").style.color = "red";
+            } else {
+                document.getElementById("allert").innerHTML = "";
+            }
+        }
+
+        function Focus() {
+            document.getElementById("obbligatorio").classList.add("focus");
+            document.getElementById("obbligatorio").addEventListener("blur", function() {
+                document.getElementById("obbligatorio").classList.remove("focus");
+            });
+        }
+    </script>
+</body>
+
+</html>
