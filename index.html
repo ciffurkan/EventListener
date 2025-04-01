@@ -26,8 +26,26 @@
             background-color: blue;
         }
 
-        .focus{
+        .focus {
             border: 5px solid blue;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 30%;
+            margin: 20px auto;
+        }
+
+        td {
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .quadratino {
+            background-color: red;
         }
     </style>
 </head>
@@ -49,6 +67,108 @@
     <input type="text" required id="obbligatorio">
     <p id="allert"></p>
 
+    <table>
+        <tr>
+            <td class="quadratino"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
     <script>
         document.getElementById("doppioclick").addEventListener("dblclick", DoppioClick)
         document.getElementById("divHover").addEventListener("mouseover", Hover)
@@ -57,6 +177,7 @@
         document.getElementById("h1color").addEventListener("change", CambiaH1)
         document.getElementById("obbligatorio").addEventListener("input", ValoreObbligatorio)
         document.getElementById("obbligatorio").addEventListener("focus", Focus)
+        document.getElementsByTagName("html").item(0).addEventListener("keyup", Movimento)
 
         function DoppioClick() {
             alert("Doppio Click")
@@ -110,10 +231,36 @@
 
         function Focus() {
             document.getElementById("obbligatorio").classList.add("focus");
-            document.getElementById("obbligatorio").addEventListener("blur", function() {
+            document.getElementById("obbligatorio").addEventListener("blur", function () {
                 document.getElementById("obbligatorio").classList.remove("focus");
             });
         }
+
+        function Movimento(e) {
+            let td = document.getElementsByTagName("td");
+            let i;
+            for (i = 0; i < td.length; i++) {
+                if (td[i].classList.contains("quadratino")) {
+                    console.log("L'indice del td con la classe quadratino è: " + i);
+                    break;
+                }
+            }
+            if (e.key === "ArrowUp" && i>8) {
+                td.item(i).classList.remove("quadratino");
+                td.item(i-9).classList.add("quadratino");
+            }
+            else if (e.key === "ArrowDown" && i < 71) {
+                td.item(i).classList.remove("quadratino");
+                td.item(i+9).classList.add("quadratino");
+            }
+            else if (e.key === "ArrowLeft" && !i==0 && !i==9 && !i==18 && !i==27 && !i==36 && !i==45 && !i==54 && !i==63 && !i==72) {
+
+            } else if (e.key === "ArrowRight" && !i==8 && !i==17 && !i==26 && !i==35 && !i==44 && !i==53 && !i==62 && !i==71 && !i==80) {
+
+            }
+        }
+
+
     </script>
 </body>
 
